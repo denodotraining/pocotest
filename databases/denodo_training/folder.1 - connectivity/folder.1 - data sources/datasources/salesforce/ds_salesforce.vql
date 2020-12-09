@@ -1,0 +1,21 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE SALESFORCE ds_salesforce
+    FOLDER = '/1 - connectivity/1 - data sources'
+    BASE_URL = 'https://cs24.salesforce.com'
+    API_VERSION = 'v41.0'
+    API_CONFIGURATION (
+        TYPE=REST
+    )
+    AUTHENTICATION OAUTH20 ( 
+      ACCESSTOKEN = '${databases.denodo_training.folder.1 - connectivity.folder.1 - data sources.datasources.salesforce.ds_salesforce.OAUTH20.HTTP.ACCESSTOKEN}' ${databases.denodo_training.folder.1 - connectivity.folder.1 - data sources.datasources.salesforce.ds_salesforce.OAUTH20.HTTP.ACCESSTOKEN.ENCRYPTED}
+      REQUESTSIGNINGMETHOD = ${databases.denodo_training.folder.1 - connectivity.folder.1 - data sources.datasources.salesforce.ds_salesforce.OAUTH20.HTTP.REQUESTSIGNINGMETHOD}
+      AUTHENTICATION_GRANT = ${databases.denodo_training.folder.1 - connectivity.folder.1 - data sources.datasources.salesforce.ds_salesforce.OAUTH20.AUTHENTICATION.GRANT}
+      TOKENENDPOINTURL = '${databases.denodo_training.folder.1 - connectivity.folder.1 - data sources.datasources.salesforce.ds_salesforce.OAUTH20.HTTP.TOKENENDPOINTURL}'
+      CLIENTIDENTIFIER = '${databases.denodo_training.folder.1 - connectivity.folder.1 - data sources.datasources.salesforce.ds_salesforce.OAUTH20.HTTP.CLIENTIDENTIFIER}'
+      CLIENTSECRET = '${databases.denodo_training.folder.1 - connectivity.folder.1 - data sources.datasources.salesforce.ds_salesforce.OAUTH20.HTTP.CLIENTSECRET}' ${databases.denodo_training.folder.1 - connectivity.folder.1 - data sources.datasources.salesforce.ds_salesforce.OAUTH20.HTTP.CLIENTSECRET.ENCRYPTED}
+      REFRESHTOKEN = '${databases.denodo_training.folder.1 - connectivity.folder.1 - data sources.datasources.salesforce.ds_salesforce.OAUTH20.HTTP.REFRESHTOKEN}' ${databases.denodo_training.folder.1 - connectivity.folder.1 - data sources.datasources.salesforce.ds_salesforce.OAUTH20.HTTP.REFRESHTOKEN.ENCRYPTED}
+      AUTHORIZATIONSERVERURL = '${databases.denodo_training.folder.1 - connectivity.folder.1 - data sources.datasources.salesforce.ds_salesforce.OAUTH20.HTTP.AUTHORIZATIONSERVERURL}'
+      SETSTATEPARAMETER = ${databases.denodo_training.folder.1 - connectivity.folder.1 - data sources.datasources.salesforce.ds_salesforce.OAUTH20.HTTP.SETSTATEPARAMETER}
+    )
+    PROXY OFF;
+

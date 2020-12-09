@@ -1,0 +1,7 @@
+﻿CREATE OR REPLACE MATERIALIZED TABLE mt_bv_order_status (
+        name:text,
+        abbreviation:text
+    )
+    FOLDER = '/1 - connectivity/2 - base views/2.1 materilized tables'
+    CONSTRAINT 'primary_key_status' PRIMARY KEY ( 'name' );
+

@@ -1,0 +1,213 @@
+﻿CREATE OR REPLACE WRAPPER SALESFORCE bv_sf_account
+    FOLDER = '/1 - connectivity/2 - base views'
+    DATASOURCENAME=ds_salesforce
+    API_CONFIGURATION (
+        TYPE=REST
+    )
+    OBJECTNAME="Account"
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) (sourcetypename='id')  SORTABLE NOT UPDATEABLE,
+        isdeleted = 'IsDeleted' : 'java.lang.Boolean' (OPT) (DEFAULTVALUE='false', sourcetypename='boolean')  SORTABLE NOT UPDATEABLE,
+        masterrecordid = 'MasterRecordId' : 'java.lang.String' (OPT) (sourcetypename='reference')  SORTABLE NOT UPDATEABLE,
+        name = 'Name' : 'java.lang.String' (OPT) (sourcetypename='string')  NOT NULL SORTABLE,
+        type = 'Type' : 'java.lang.String' (OPT) (DEFAULTVALUE='Customer', sourcetypename='picklist')  SORTABLE,
+        parentid = 'ParentId' : 'java.lang.String' (OPT) (sourcetypename='reference')  SORTABLE,
+        billingstreet = 'BillingStreet' : 'java.lang.String' (OPT) (sourcetypename='textarea')  SORTABLE,
+        billingcity = 'BillingCity' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        billingstate = 'BillingState' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        billingpostalcode = 'BillingPostalCode' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        billingcountry = 'BillingCountry' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        billinglatitude = 'BillingLatitude' : 'java.lang.Double' (OPT) (sourcetypename='double')  SORTABLE,
+        billinglongitude = 'BillingLongitude' : 'java.lang.Double' (OPT) (sourcetypename='double')  SORTABLE,
+        billinggeocodeaccuracy = 'BillingGeocodeAccuracy' : 'java.lang.String' (OPT) (sourcetypename='picklist')  SORTABLE,
+        shippingstreet = 'ShippingStreet' : 'java.lang.String' (OPT) (sourcetypename='textarea')  SORTABLE,
+        shippingcity = 'ShippingCity' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        shippingstate = 'ShippingState' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        shippingpostalcode = 'ShippingPostalCode' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        shippingcountry = 'ShippingCountry' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        shippinglatitude = 'ShippingLatitude' : 'java.lang.Double' (OPT) (sourcetypename='double')  SORTABLE,
+        shippinglongitude = 'ShippingLongitude' : 'java.lang.Double' (OPT) (sourcetypename='double')  SORTABLE,
+        shippinggeocodeaccuracy = 'ShippingGeocodeAccuracy' : 'java.lang.String' (OPT) (sourcetypename='picklist')  SORTABLE,
+        phone = 'Phone' : 'java.lang.String' (OPT) (sourcetypename='phone')  SORTABLE,
+        fax = 'Fax' : 'java.lang.String' (OPT) (sourcetypename='phone')  SORTABLE,
+        website = 'Website' : 'java.lang.String' (OPT) (sourcetypename='url')  SORTABLE,
+        photourl = 'PhotoUrl' : 'java.lang.String' (OPT) (sourcetypename='url')  SORTABLE NOT UPDATEABLE,
+        industry = 'Industry' : 'java.lang.String' (OPT) (sourcetypename='picklist')  SORTABLE,
+        annualrevenue = 'AnnualRevenue' : 'java.lang.Double' (OPT) (sourcetypename='currency')  SORTABLE,
+        numberofemployees = 'NumberOfEmployees' : 'java.lang.Integer' (OPT) (sourcetypename='int')  SORTABLE,
+        description = 'Description' : 'java.lang.String' (sourcetypename='textarea')  NOT SORTABLE,
+        currencyisocode = 'CurrencyIsoCode' : 'java.lang.String' (OPT) (DEFAULTVALUE='EUR', sourcetypename='picklist')  SORTABLE,
+        ownerid = 'OwnerId' : 'java.lang.String' (OPT) (sourcetypename='reference')  SORTABLE,
+        createddate = 'CreatedDate' : 'java.time.OffsetDateTime' (OPT) (sourcetypename='datetime')  SORTABLE NOT UPDATEABLE,
+        createdbyid = 'CreatedById' : 'java.lang.String' (OPT) (sourcetypename='reference')  SORTABLE NOT UPDATEABLE,
+        lastmodifieddate = 'LastModifiedDate' : 'java.time.OffsetDateTime' (OPT) (sourcetypename='datetime')  SORTABLE NOT UPDATEABLE,
+        lastmodifiedbyid = 'LastModifiedById' : 'java.lang.String' (OPT) (sourcetypename='reference')  SORTABLE NOT UPDATEABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.time.OffsetDateTime' (OPT) (sourcetypename='datetime')  SORTABLE NOT UPDATEABLE,
+        lastactivitydate = 'LastActivityDate' : 'java.time.LocalDate' (OPT) (sourcetypename='date')  SORTABLE NOT UPDATEABLE,
+        lastvieweddate = 'LastViewedDate' : 'java.time.OffsetDateTime' (OPT) (sourcetypename='datetime')  SORTABLE NOT UPDATEABLE,
+        lastreferenceddate = 'LastReferencedDate' : 'java.time.OffsetDateTime' (OPT) (sourcetypename='datetime')  SORTABLE NOT UPDATEABLE,
+        jigsaw = 'Jigsaw' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        jigsawcompanyid = 'JigsawCompanyId' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE NOT UPDATEABLE,
+        accountsource = 'AccountSource' : 'java.lang.String' (OPT) (sourcetypename='picklist')  SORTABLE,
+        sicdesc = 'SicDesc' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        zoom__zi_importeddate__c = 'ZOOM__ZI_ImportedDate__c' : 'java.time.LocalDate' (OPT) (sourcetypename='date')  SORTABLE,
+        zoom__zi_company__c = 'ZOOM__ZI_Company__c' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        external_customer_code__c = 'External_Customer_Code__c' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        d_u_n_s__c = 'D_U_N_S__c' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        hooversid__c = 'HooversId__c' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        status__c = 'Status__c' : 'java.lang.String' (OPT) (DEFAULTVALUE='Prospect', sourcetypename='picklist')  SORTABLE,
+        publishable__c = 'Publishable__c' : 'java.lang.Boolean' (OPT) (DEFAULTVALUE='false', sourcetypename='boolean')  SORTABLE,
+        pw_cc__billingaddressstatus__c = 'pw_cc__BillingAddressStatus__c' : 'java.lang.String' (OPT) (DEFAULTVALUE='Not checked', sourcetypename='picklist')  SORTABLE,
+        pw_cc__billingcountrylookup__c = 'pw_cc__BillingCountryLookup__c' : 'java.lang.String' (OPT) (sourcetypename='reference')  SORTABLE,
+        pw_cc__billingstatelookup__c = 'pw_cc__BillingStateLookup__c' : 'java.lang.String' (OPT) (sourcetypename='reference')  SORTABLE,
+        pw_cc__shippingaddressstatus__c = 'pw_cc__ShippingAddressStatus__c' : 'java.lang.String' (OPT) (DEFAULTVALUE='Not checked', sourcetypename='picklist')  SORTABLE,
+        pw_cc__shippingcountrylookup__c = 'pw_cc__ShippingCountryLookup__c' : 'java.lang.String' (OPT) (sourcetypename='reference')  SORTABLE,
+        pw_cc__shippingstatelookup__c = 'pw_cc__ShippingStateLookup__c' : 'java.lang.String' (OPT) (sourcetypename='reference')  SORTABLE,
+        target_level__c = 'Target_Level__c' : 'java.lang.String' (OPT) (DEFAULTVALUE='Other', sourcetypename='picklist')  SORTABLE,
+        auxfilteringcode__c = 'AuxFilteringCode__c' : 'java.lang.String' (OPT) (sourcetypename='string')  SORTABLE,
+        accounts__c = 'Accounts__c' : 'java.lang.Double' (OPT) (sourcetypename='double')  SORTABLE NOT UPDATEABLE,
+        pw_cc__billingzipcodelookup__c = 'pw_cc__BillingZipCodeLookup__c' : 'java.lang.String' (OPT) (sourcetypename='reference')  SORTABLE,
+        pw_cc__shippingzipcodelookup__c = 'pw_cc__ShippingZipCodeLookup__c' : 'java.lang.String' (OPT) (sourcetypename='reference')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_sf_account I18N us_pst (
+        id:text (sourcetypeid = '12'),
+        isdeleted:boolean (defaultvalue = 'false', sourcetypeid = '16'),
+        masterrecordid:text (sourcetypeid = '12'),
+        name:text (sourcetypeid = '12'),
+        type:text (defaultvalue = 'Customer', sourcetypeid = '12'),
+        parentid:text (sourcetypeid = '12'),
+        billingstreet:text (sourcetypeid = '12'),
+        billingcity:text (sourcetypeid = '12'),
+        billingstate:text (sourcetypeid = '12'),
+        billingpostalcode:text (sourcetypeid = '12'),
+        billingcountry:text (sourcetypeid = '12'),
+        billinglatitude:double (sourcetypeid = '8'),
+        billinglongitude:double (sourcetypeid = '8'),
+        billinggeocodeaccuracy:text (sourcetypeid = '12'),
+        shippingstreet:text (sourcetypeid = '12'),
+        shippingcity:text (sourcetypeid = '12'),
+        shippingstate:text (sourcetypeid = '12'),
+        shippingpostalcode:text (sourcetypeid = '12'),
+        shippingcountry:text (sourcetypeid = '12'),
+        shippinglatitude:double (sourcetypeid = '8'),
+        shippinglongitude:double (sourcetypeid = '8'),
+        shippinggeocodeaccuracy:text (sourcetypeid = '12'),
+        phone:text (sourcetypeid = '12'),
+        fax:text (sourcetypeid = '12'),
+        website:text (sourcetypeid = '12'),
+        photourl:text (sourcetypeid = '12'),
+        industry:text (sourcetypeid = '12'),
+        annualrevenue:double (sourcetypeid = '8'),
+        numberofemployees:int (sourcetypeid = '4'),
+        description:text (sourcetypeid = '12'),
+        currencyisocode:text (defaultvalue = 'EUR', sourcetypeid = '12'),
+        ownerid:text (sourcetypeid = '12'),
+        createddate:timestamptz (sourcetypeid = '2014'),
+        createdbyid:text (sourcetypeid = '12'),
+        lastmodifieddate:timestamptz (sourcetypeid = '2014'),
+        lastmodifiedbyid:text (sourcetypeid = '12'),
+        systemmodstamp:timestamptz (sourcetypeid = '2014'),
+        lastactivitydate:localdate (sourcetypeid = '91'),
+        lastvieweddate:timestamptz (sourcetypeid = '2014'),
+        lastreferenceddate:timestamptz (sourcetypeid = '2014'),
+        jigsaw:text (sourcetypeid = '12'),
+        jigsawcompanyid:text (sourcetypeid = '12'),
+        accountsource:text (sourcetypeid = '12'),
+        sicdesc:text (sourcetypeid = '12'),
+        zoom__zi_importeddate__c:localdate (sourcetypeid = '91'),
+        zoom__zi_company__c:text (sourcetypeid = '12'),
+        external_customer_code__c:text (sourcetypeid = '12'),
+        d_u_n_s__c:text (sourcetypeid = '12'),
+        hooversid__c:text (sourcetypeid = '12'),
+        status__c:text (defaultvalue = 'Prospect', sourcetypeid = '12'),
+        publishable__c:boolean (defaultvalue = 'false', sourcetypeid = '16'),
+        pw_cc__billingaddressstatus__c:text (defaultvalue = 'Not checked', sourcetypeid = '12'),
+        pw_cc__billingcountrylookup__c:text (sourcetypeid = '12'),
+        pw_cc__billingstatelookup__c:text (sourcetypeid = '12'),
+        pw_cc__shippingaddressstatus__c:text (defaultvalue = 'Not checked', sourcetypeid = '12'),
+        pw_cc__shippingcountrylookup__c:text (sourcetypeid = '12'),
+        pw_cc__shippingstatelookup__c:text (sourcetypeid = '12'),
+        target_level__c:text (defaultvalue = 'Other', sourcetypeid = '12'),
+        auxfilteringcode__c:text (sourcetypeid = '12'),
+        accounts__c:double (sourcetypeid = '8'),
+        pw_cc__billingzipcodelookup__c:text (sourcetypeid = '12'),
+        pw_cc__shippingzipcodelookup__c:text (sourcetypeid = '12')
+    )
+    FOLDER = '/1 - connectivity/2 - base views'
+    PRIMARY KEY ( 'id' )
+    CACHE FULL
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE NOEXPIRE
+    ADD SEARCHMETHOD bv_sf_account(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD isdeleted (any) OPT ANY
+             ADD masterrecordid (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD type (any) OPT ANY
+             ADD parentid (any) OPT ANY
+             ADD billingstreet (any) OPT ANY
+             ADD billingcity (any) OPT ANY
+             ADD billingstate (any) OPT ANY
+             ADD billingpostalcode (any) OPT ANY
+             ADD billingcountry (any) OPT ANY
+             ADD billinglatitude (any) OPT ANY
+             ADD billinglongitude (any) OPT ANY
+             ADD billinggeocodeaccuracy (any) OPT ANY
+             ADD shippingstreet (any) OPT ANY
+             ADD shippingcity (any) OPT ANY
+             ADD shippingstate (any) OPT ANY
+             ADD shippingpostalcode (any) OPT ANY
+             ADD shippingcountry (any) OPT ANY
+             ADD shippinglatitude (any) OPT ANY
+             ADD shippinglongitude (any) OPT ANY
+             ADD shippinggeocodeaccuracy (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD fax (any) OPT ANY
+             ADD website (any) OPT ANY
+             ADD photourl (any) OPT ANY
+             ADD industry (any) OPT ANY
+             ADD annualrevenue (any) OPT ANY
+             ADD numberofemployees (any) OPT ANY
+             ADD currencyisocode (any) OPT ANY
+             ADD ownerid (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD createdbyid (any) OPT ANY
+             ADD lastmodifieddate (any) OPT ANY
+             ADD lastmodifiedbyid (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+             ADD lastactivitydate (any) OPT ANY
+             ADD lastvieweddate (any) OPT ANY
+             ADD lastreferenceddate (any) OPT ANY
+             ADD jigsaw (any) OPT ANY
+             ADD jigsawcompanyid (any) OPT ANY
+             ADD accountsource (any) OPT ANY
+             ADD sicdesc (any) OPT ANY
+             ADD zoom__zi_importeddate__c (any) OPT ANY
+             ADD zoom__zi_company__c (any) OPT ANY
+             ADD external_customer_code__c (any) OPT ANY
+             ADD d_u_n_s__c (any) OPT ANY
+             ADD hooversid__c (any) OPT ANY
+             ADD status__c (any) OPT ANY
+             ADD publishable__c (any) OPT ANY
+             ADD pw_cc__billingaddressstatus__c (any) OPT ANY
+             ADD pw_cc__billingcountrylookup__c (any) OPT ANY
+             ADD pw_cc__billingstatelookup__c (any) OPT ANY
+             ADD pw_cc__shippingaddressstatus__c (any) OPT ANY
+             ADD pw_cc__shippingcountrylookup__c (any) OPT ANY
+             ADD pw_cc__shippingstatelookup__c (any) OPT ANY
+             ADD target_level__c (any) OPT ANY
+             ADD auxfilteringcode__c (any) OPT ANY
+             ADD accounts__c (any) OPT ANY
+             ADD pw_cc__billingzipcodelookup__c (any) OPT ANY
+             ADD pw_cc__shippingzipcodelookup__c (any) OPT ANY
+             ADD description NOS ZERO ()
+        )
+        OUTPUTLIST (accounts__c, accountsource, annualrevenue, auxfilteringcode__c, billingcity, billingcountry, billinggeocodeaccuracy, billinglatitude, billinglongitude, billingpostalcode, billingstate, billingstreet, createdbyid, createddate, currencyisocode, d_u_n_s__c, description, external_customer_code__c, fax, hooversid__c, id, industry, isdeleted, jigsaw, jigsawcompanyid, lastactivitydate, lastmodifiedbyid, lastmodifieddate, lastreferenceddate, lastvieweddate, masterrecordid, name, numberofemployees, ownerid, parentid, phone, photourl, publishable__c, pw_cc__billingaddressstatus__c, pw_cc__billingcountrylookup__c, pw_cc__billingstatelookup__c, pw_cc__billingzipcodelookup__c, pw_cc__shippingaddressstatus__c, pw_cc__shippingcountrylookup__c, pw_cc__shippingstatelookup__c, pw_cc__shippingzipcodelookup__c, shippingcity, shippingcountry, shippinggeocodeaccuracy, shippinglatitude, shippinglongitude, shippingpostalcode, shippingstate, shippingstreet, sicdesc, status__c, systemmodstamp, target_level__c, type, website, zoom__zi_company__c, zoom__zi_importeddate__c
+        )
+        WRAPPER (salesforce bv_sf_account)
+    )
+    DECLARE CACHE INDEX idx_sf_account ON (id);
+

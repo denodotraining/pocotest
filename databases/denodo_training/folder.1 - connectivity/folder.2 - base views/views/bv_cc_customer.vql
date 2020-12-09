@@ -1,0 +1,47 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_cc_customer
+    FOLDER = '/1 - connectivity/2 - base views'
+    DATASOURCENAME=ds_call_center
+    SCHEMANAME='${databases.denodo_training.folder.1 - connectivity.folder.2 - base views.views.jdbc.bv_cc_customer.SCHEMANAME}' 
+    RELATIONNAME='CUSTOMER' 
+    OUTPUTSCHEMA (
+        customer_id = 'CUSTOMER_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='22', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        customer_name = 'CUSTOMER_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
+        customer_address = 'CUSTOMER_ADDRESS' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
+        phone_number = 'CALLTRACKING_NUMBER' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        customer_code = 'CUSTOMER_CODE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        job_title = 'JOB_TITLE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        other_details = 'OTHER_DETAILS' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='250', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    )
+    CONSTRAINT 'CUSTOMER_PK' PRIMARY KEY ( 'CUSTOMER_ID' )
+    INDEX 'CUSTOMER_PK' CLUSTER UNIQUE PRIMARY ( 'CUSTOMER_ID' );
+
+CREATE OR REPLACE TABLE bv_cc_customer I18N us_est (
+        customer_id:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '22'),
+        customer_name:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50'),
+        customer_address:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50'),
+        phone_number:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50'),
+        customer_code:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50'),
+        job_title:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50'),
+        other_details:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '250')
+    )
+    FOLDER = '/1 - connectivity/2 - base views'
+    PRIMARY KEY ( 'customer_id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_cc_customer(
+        I18N us_est
+        CONSTRAINTS (
+             ADD customer_id (any) OPT ANY
+             ADD customer_name (any) OPT ANY
+             ADD customer_address (any) OPT ANY
+             ADD phone_number (any) OPT ANY
+             ADD customer_code (any) OPT ANY
+             ADD job_title (any) OPT ANY
+             ADD other_details (any) OPT ANY
+        )
+        OUTPUTLIST (customer_address, customer_code, customer_id, customer_name, job_title, other_details, phone_number
+        )
+        WRAPPER (jdbc bv_cc_customer)
+    );
+

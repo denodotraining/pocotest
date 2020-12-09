@@ -1,0 +1,8 @@
+﻿CREATE OR REPLACE MATERIALIZED TABLE mt_bv_customer_details (
+        id:decimal,
+        name:text,
+        address:text
+    )
+    FOLDER = '/1 - connectivity/2 - base views/2.1 materilized tables'
+    CONSTRAINT 'primary_key_status' PRIMARY KEY ( 'id' );
+
