@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATABASE customer_private '';
+
+ALTER DATABASE customer_private
+  CHARSET DEFAULT;
+
